@@ -1,0 +1,55 @@
+# Keil C51 / EIDE outputs
+build/
+Objects/
+Listings/
+bin/
+obj/
+out/
+*.o
+*.obj
+*.lst
+*.map
+*.m51
+*.lnp
+*.hex
+*.bin
+*.elf
+*.axf
+*.build_log.htm
+*.objlist
+*.args.txt
+*.params
+*.params.old
+
+# Local editor and project state (keep .eide/eide.*, workspace, tasks.json)
+.eide/log/
+.eide.usr.ctx.json
+.settings/
+**/.vscode/launch.json
+**/.vscode/settings.json
+*.uvopt
+*.uvoptx
+*.uvgui.*
+*.ept
+*.eide-template
+
+# OS / Python / temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+__pycache__/
+*.pyc
+*.tmp
+*.lock
+~$*
+*.bak
+
+# Local-only course distribution, installers, archives and review artifacts
+_Codex/
+downloads/
+*.vip
+*.exe
+*.msi
+*.vsix
+*.rar
+*.7z
