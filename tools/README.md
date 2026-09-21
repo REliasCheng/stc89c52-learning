@@ -1,7 +1,5 @@
-# 烧录辅助工具
+# 串口下载脚本
 
-[首页](../README.md) · [编译与烧录](../docs/06_编译与烧录.md)
+[`stcflash.py`](stcflash.py) 来自原课程工程所带的同名文件，文件头保留 laborer 的署名与 GPL-3.0-or-later 声明。仓库只留一个副本；各主题下的 EIDE 工程从自身目录通过 `../../../../../tools/stcflash.py` 调用。课程基础模板仍在 `templates/eide-c51/`，它使用 `../../tools/stcflash.py`。
 
-`stcflash.py` 是原工程携带的脚本，原文件头署名 laborer，按 GPL-3.0-or-later 授权；本仓库保留一个与原工程相同的副本，不以 MIT 重授权。EIDE 工程由各项目目录执行 `python ../../tools/stcflash.py -p ${port} "${hexFile}"`，依赖 Python 的 `pyserial` 和有效的串口/HEX。脚本**不会在浏览仓库时自动执行**；烧录前核对设备型号、端口和供电，参见 [FAQ](../docs/08_常见问题.md)。
-
-历史 EIDE 工程曾各带同一脚本，仓库集中保存后仅调整工程配置相对路径。STC-ISP 也可作为独立 GUI 烧录方式，安装程序不随仓库分发。
+这个脚本需要 `pyserial`。上传前仍要确认 HEX、设备型号、当前 COM 口及供电，详见[编译与烧录](../docs/编译与烧录.md)。脚本不随浏览或克隆仓库自动执行；它的 GPL 许可不被根目录 MIT 替代。
