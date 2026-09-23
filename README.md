@@ -8,6 +8,8 @@
 
 核心板、扩展板原理图和器件手册位于 [hardware](hardware/README.md)。
 
+按系统查看：[GPIO / 输出](projects/01_LED/) · [数码管](projects/02_数码管/) / [OLED](projects/10_OLED/) · [按键](projects/03_按键/) / [外部中断](projects/05_外部中断/) · [定时器](projects/06_定时器/) / [UART](projects/08_UART/) · [EEPROM](projects/09_I2C与AT24C02/) / [温度](projects/11_DS18B20/) / [RTC](projects/12_DS1302/) · [综合应用](projects/13_环境与时钟信息终端/)
+
 ## 实验工程
 
 | 模块 | 实现 |
@@ -26,7 +28,7 @@
 | [12 DS1302](projects/12_DS1302/) | RTC、温度和 OLED 组合显示 |
 | [13 环境与时钟信息终端](projects/13_环境与时钟信息终端/) | RTC、温度、按键、OLED 和 EEPROM 的个人应用 |
 
-12 个课程主题包含 20 个可打开的 Keil/EIDE 工程。课程源码保存在各模块的 src/course/，个人综合应用位于第 13 个项目。
+前 12 个主题保留 20 个可打开的 Keil/EIDE 工程，源码位于各模块的 `src/course/`；个人综合应用位于第 13 个项目。
 
 ## 硬件平台
 
