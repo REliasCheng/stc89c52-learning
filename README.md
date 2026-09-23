@@ -2,9 +2,13 @@
 
 基于 STC89C52RC 教学板的 C51 工程，覆盖 GPIO、显示、按键、定时器、中断、UART、软件 I²C、RTC 和温度传感器。早期实验直接操作端口，后期工程逐步拆分为 Com、Dri、Int 和应用逻辑。
 
-| 教学扩展板 | 环境与时钟信息终端 |
+## Board Overview
+
+以下为课程资料中的开发板结构参考图（development board reference），不是实物照片。
+
+| 教学核心板 V1.0 | 教学扩展板 V1.0 |
 | --- | --- |
-| ![教学扩展板 V1.0](assets/images/extension-board-v1-render-a.png) | ![环境与时钟信息终端结构](assets/images/environment-clock-terminal-architecture.svg) |
+| ![教学核心板 V1.0 结构参考](assets/images/core-board-v1-render-a.png) | ![教学扩展板 V1.0 结构参考](assets/images/extension-board-v1-render-a.png) |
 
 核心板、扩展板原理图和器件手册位于 [hardware](hardware/README.md)。
 
