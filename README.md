@@ -49,7 +49,7 @@
 
 ## 项目模块
 
-20 个课程工程入口按硬件主题汇入 12 个模块；每个模块文档都给出信号路径、函数关系、关键代码和复现时的检查点。
+20 个课程工程入口按硬件主题汇入 12 个模块；在这些驱动基础上，仓库增加了一个独立的个人综合应用。每个模块文档都给出信号路径、函数关系、关键代码和复现时的检查点。
 
 | 模块 | 代表实践 | 入口 |
 | --- | --- | --- |
@@ -65,6 +65,7 @@
 | 10 OLED | I²C 命令/数据、字模显示 | [查看工程](projects/10_OLED/) |
 | 11 DS18B20 | 1-Wire 温度读取与 OLED 输出 | [查看工程](projects/11_DS18B20/) |
 | 12 DS1302 | RTC、温度和 OLED 的组合应用 | [查看工程](projects/12_DS1302/) |
+| 13 环境与时钟信息终端 | RTC、温度、OLED、按键和EEPROM的个人应用层 | [查看工程](projects/13_环境与时钟信息终端/) |
 
 ## 获取、编译与下载
 
@@ -83,3 +84,7 @@
 - [课程路线与项目总结](docs/学习路线.md)：按工程推进顺序查看技术跨度。
 
 实物板照片、运行截图、串口或示波器记录与演示视频将按对应模块补入。现在可以先从工程和板图阅读实现，再按文档在自己的设备上复现。
+
+## 技术路线中的位置
+
+[Embedded-Systems-Foundations](https://github.com/REliasCheng/Embedded-Systems-Foundations) → [Embedded-C-Cpp-Learning](https://github.com/REliasCheng/Embedded-C-Cpp-Learning) → **stc89c52-learning** → [BlueBridgeCup-MCU](https://github.com/REliasCheng/BlueBridgeCup-MCU)

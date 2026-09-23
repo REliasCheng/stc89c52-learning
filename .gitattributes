@@ -1,4 +1,7 @@
 * text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
+LICENSE text eol=lf
 *.md text eol=lf
 *.json text eol=lf
 *.yml text eol=lf
@@ -8,3 +11,5 @@
 *.A51 text
 *.pdf binary
 *.png binary
+projects/**/practice/**/*.c text eol=lf
+projects/**/practice/**/*.h text eol=lf
