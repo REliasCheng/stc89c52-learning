@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="500" viewBox="0 0 1180 500" role="img" aria-labelledby="title desc">
+  <title id="title">Environment and clock terminal architecture</title>
+  <desc id="desc">Keys and periodic ticks drive the application core, which uses platform callbacks to access RTC, temperature, OLED and EEPROM drivers.</desc>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#57606a"/></marker>
+    <style>
+      .box{fill:#f6f8fa;stroke:#57606a;stroke-width:2;rx:12}.app{fill:#ddf4ff;stroke:#0969da}.drv{fill:#dafbe1;stroke:#1a7f37}.label{font:600 18px Arial,sans-serif;fill:#24292f;text-anchor:middle}.sub{font:14px Arial,sans-serif;fill:#57606a;text-anchor:middle}.line{stroke:#57606a;stroke-width:3;marker-end:url(#a)}
+    </style>
+  </defs>
+  <rect width="1180" height="500" fill="#ffffff"/>
+  <rect class="box" x="35" y="80" width="170" height="85"/><text class="label" x="120" y="115">SW1–SW4</text><text class="sub" x="120" y="143">key events</text>
+  <rect class="box" x="35" y="260" width="170" height="85"/><text class="label" x="120" y="295">100 ms tick</text><text class="sub" x="120" y="323">sampling cadence</text>
+  <rect class="box app" x="285" y="125" width="260" height="180"/><text class="label" x="415" y="162">TerminalApp core</text><text class="sub" x="415" y="194">page state</text><text class="sub" x="415" y="222">temperature offset</text><text class="sub" x="415" y="250">dirty flag</text><text class="sub" x="415" y="278">platform callbacks</text>
+  <rect class="box drv" x="635" y="35" width="190" height="80"/><text class="label" x="730" y="70">DS1302</text><text class="sub" x="730" y="96">RTC read</text>
+  <rect class="box drv" x="635" y="140" width="190" height="80"/><text class="label" x="730" y="175">DS18B20</text><text class="sub" x="730" y="201">convert + read</text>
+  <rect class="box drv" x="635" y="245" width="190" height="80"/><text class="label" x="730" y="280">AT24C02</text><text class="sub" x="730" y="306">explicit config save</text>
+  <rect class="box drv" x="635" y="350" width="190" height="80"/><text class="label" x="730" y="385">OLED</text><text class="sub" x="730" y="411">page render</text>
+  <rect class="box" x="915" y="125" width="220" height="180"/><text class="label" x="1025" y="162">Application output</text><text class="sub" x="1025" y="194">clock page</text><text class="sub" x="1025" y="222">temperature page</text><text class="sub" x="1025" y="250">settings page</text><text class="sub" x="1025" y="278">persisted configuration</text>
+  <line class="line" x1="205" y1="122" x2="280" y2="175"/><line class="line" x1="205" y1="302" x2="280" y2="255"/>
+  <line class="line" x1="545" y1="170" x2="630" y2="80"/><line class="line" x1="545" y1="205" x2="630" y2="180"/><line class="line" x1="545" y1="240" x2="630" y2="285"/><line class="line" x1="545" y1="275" x2="630" y2="390"/>
+  <line class="line" x1="825" y1="180" x2="910" y2="205"/><line class="line" x1="825" y1="285" x2="910" y2="250"/><line class="line" x1="825" y1="390" x2="910" y2="285"/>
+</svg>

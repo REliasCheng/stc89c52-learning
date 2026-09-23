@@ -11,5 +11,6 @@ LICENSE text eol=lf
 *.A51 text
 *.pdf binary
 *.png binary
+*.svg text eol=lf
 projects/**/practice/**/*.c text eol=lf
 projects/**/practice/**/*.h text eol=lf

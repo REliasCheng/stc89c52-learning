@@ -10,9 +10,12 @@
 
 ## 项目展示
 
-![教学扩展板 V1.0 的原始 3D 渲染图](assets/images/extension-board-v1-render-a.png)
+| 教学扩展板 | 个人综合应用结构 |
+| --- | --- |
+| ![教学扩展板 V1.0 的原始 3D 渲染图](assets/images/extension-board-v1-render-a.png) | ![环境与时钟信息终端结构](assets/images/environment-clock-terminal-architecture.svg) |
 
-*图为板卡资料中的渲染图。[核心板图](assets/images/core-board-v1-render-a.png)与[原理图](hardware/README.md)可对照阅读。实物照片预留 assets/images/project-cover.png，拍摄后再添加；目前不以渲染图代替实验实拍。*
+左图为板卡资料中的渲染图；右图对应 `projects/13_环境与时钟信息终端` 的真实源码结构。[核心板图](assets/images/core-board-v1-render-a.png)与[原理图](hardware/README.md)可继续对照阅读。
+
 
 ## 核心技术能力
 
@@ -45,7 +48,7 @@
 
     Com_*：延时等公共组件，由需要它的层调用
 
-这不是所有工程都具备的固定四层结构。LED 等早期工程直接在 main.c 控制 IO；后续才逐步引入 Com/Dri/Int。[工程结构](docs/工程结构.md)列出实际目录与版本差异，[架构演变](docs/架构演变.md)解释这种变化。
+架构随实验复杂度逐步演进：LED 等早期工程直接在 main.c 控制 IO，后续工程逐步引入 Com/Dri/Int。[工程结构](docs/工程结构.md)列出实际目录与版本差异，[架构演变](docs/架构演变.md)解释这种变化。
 
 ## 项目模块
 

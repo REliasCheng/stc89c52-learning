@@ -15,6 +15,8 @@
 
 ## 模块关系
 
+![环境与时钟信息终端结构](../../assets/images/environment-clock-terminal-architecture.svg)
+
 ```text
 main.c
   ├─ 读取独立按键 → TerminalKey
@@ -39,6 +41,8 @@ terminal_app.c
 - `projects/03_按键/.../Int_Key`。
 
 课程源码保持原样；新增的`Int_DS18B20_Safe`位于本项目中，专门处理转换等待。
+
+更完整的模块职责、事件状态和存储策略见[系统结构与数据流](docs/系统结构与数据流.md)。
 
 ## 数据流
 
