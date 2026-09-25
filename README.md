@@ -34,6 +34,10 @@
 | [12 DS1302](projects/12_DS1302/) | RTC、温度和 OLED 组合显示 |
 | [13 环境与时钟信息终端](projects/13_环境与时钟信息终端/) | RTC、温度、按键、OLED 和 EEPROM 的个人应用 |
 
+![环境与时钟信息终端架构](assets/images/architecture/environment-clock-terminal-architecture.svg)
+
+[环境与时钟信息终端](projects/13_环境与时钟信息终端/)将按键事件、RTC、温度采样、OLED 页面和 EEPROM 配置组织在同一应用状态中。
+
 前 12 个主题包含 20 个可打开的 Keil/EIDE 工程，源码位于各模块的 `src/course/`；环境与时钟信息终端位于第 13 个项目。
 
 ## 硬件平台
