@@ -86,7 +86,7 @@ templates/  EIDE C51 基础配置
 - [学习路线](docs/学习路线.md)
 - [工程结构](docs/工程结构.md)
 - [架构演变](docs/架构演变.md)
-- [硬件理解](docs/我的硬件理解.md)
+- [硬件信号分析](docs/我的硬件理解.md)
 - [项目总结](docs/项目总结.md)
 
 ## Related Projects
