@@ -15,7 +15,7 @@
 
 ## 模块关系
 
-![环境与时钟信息终端结构](../../assets/images/environment-clock-terminal-architecture.svg)
+![环境与时钟信息终端结构](../../assets/images/architecture/environment-clock-terminal-architecture.svg)
 
 ```text
 main.c
@@ -34,13 +34,13 @@ terminal_app.c
   └─ 配置脏标记
 ```
 
-`practice/core/`不包含寄存器和板级头文件，可以在主机端测试。`practice/c51/`是板级适配入口，复用仓库中以下课程接口：
+`practice/core/` 与寄存器和板级头文件解耦，可在主机端测试。`practice/c51/` 是板级适配入口，复用以下已有驱动：
 
 - `projects/12_DS1302/.../Int_DS1302`、`Int_OLED`、`Dri_IIC`、`Dri_1Wire`和`Com_Util`。
 - `projects/09_I2C与AT24C02/.../Int_EEPROM`。
 - `projects/03_按键/.../Int_Key`。
 
-新增的 `Int_DS18B20_Safe` 位于本项目中，负责 DS18B20 转换等待；其余适配接口调用对应课程工程中的驱动。
+`Int_DS18B20_Safe` 负责 DS18B20 转换等待；其余适配接口调用对应外设工程中的驱动。
 
 更完整的模块职责、事件状态和存储策略见[系统结构与数据流](docs/系统结构与数据流.md)。
 

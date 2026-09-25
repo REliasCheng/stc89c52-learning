@@ -1,6 +1,6 @@
 # OLED｜总线通信与显示接口封装
 
-[返回项目模块](../README.md) · [板卡引脚](../../hardware/引脚映射.md) · [课程工程](src/course/17-OLED/)
+[返回项目模块](../README.md) · [板卡引脚](../../hardware/引脚映射.md) · [工程源码](src/course/17-OLED/)
 
 [17 OLED 工程](src/course/17-OLED/)初始化并清屏，在屏幕上输出 Hello World! 和 -12345678。应用只提交文本和数字，Int_OLED 负责命令、地址与字模，Dri_IIC 负责 P1.6/P1.7 上的总线动作。这是“器件显示接口建在通信驱动之上”的直接例子。
 
