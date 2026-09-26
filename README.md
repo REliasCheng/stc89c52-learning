@@ -1,10 +1,10 @@
 # STC89C52RC 嵌入式开发实践
 
-## Overview
+## 👋 项目简介 | Overview
 
 基于 STC89C52RC 教学板的 C51 工程，覆盖 GPIO、显示、按键、定时器、中断、UART、软件 I²C、RTC 和温度传感器。早期实验直接操作端口，后期工程逐步拆分为 Com、Dri、Int 和应用逻辑。
 
-## Architecture
+## 🧠 系统架构 | Architecture
 
 以下为教学核心板与扩展板的结构渲染图，用于定位主要接口和板载器件。
 
@@ -16,7 +16,7 @@
 
 按系统查看：[GPIO / 输出](projects/01_LED/) · [数码管](projects/02_数码管/) / [OLED](projects/10_OLED/) · [按键](projects/03_按键/) / [外部中断](projects/05_外部中断/) · [定时器](projects/06_定时器/) / [UART](projects/08_UART/) · [EEPROM](projects/09_I2C与AT24C02/) / [温度](projects/11_DS18B20/) / [RTC](projects/12_DS1302/) · [综合应用](projects/13_环境与时钟信息终端/)
 
-## Technical Highlights
+## 🚀 核心项目 | Featured Projects
 
 | 模块 | 实现 |
 | --- | --- |
@@ -40,7 +40,7 @@
 
 前 12 个主题包含 20 个可打开的 Keil/EIDE 工程，源码位于各模块的 `src/course/`；环境与时钟信息终端位于第 13 个项目。
 
-## 硬件平台
+## ⚙ 硬件平台 | Hardware
 
 - STC89C52RC，11.0592 MHz 晶振
 - 51 教学核心板与扩展板 V1.0
@@ -52,7 +52,7 @@
 
 完整连接见[引脚映射](hardware/引脚映射.md)。
 
-## Project Structure
+## 📂 工程结构 | Repository Structure
 
     main.c / Application   初始化、输入处理和业务状态
             ↓
@@ -74,7 +74,7 @@ tools/      STC 下载脚本
 templates/  EIDE C51 基础配置
 ```
 
-## Build / Run
+## 🛠 构建与烧录 | Build / Run
 
 1. 早期工程用 Keil 打开 .uvproj，后期工程可打开对应 .code-workspace。
 2. 配置 Keil C51 与 EIDE，构建后确认本次生成的 HEX 路径。
@@ -85,7 +85,7 @@ templates/  EIDE C51 基础配置
 
 来源与许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
-## Documentation
+## 📖 技术文档 | Documentation
 
 - [学习路线](docs/学习路线.md)
 - [工程结构](docs/工程结构.md)
@@ -93,7 +93,7 @@ templates/  EIDE C51 基础配置
 - [硬件信号分析](docs/我的硬件理解.md)
 - [项目总结](docs/项目总结.md)
 
-## Related Projects
+## 🔗 相关项目 | Related Projects
 
 - [C51-Board-Lab](https://github.com/REliasCheng/C51-Board-Lab)：51 开天开发板资源与板级连接分析。
 - [STC8-MCU-Learning](https://github.com/REliasCheng/STC8-MCU-Learning)：STC8H8K64U 外设与任务协作工程。
