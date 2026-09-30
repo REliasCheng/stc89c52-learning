@@ -1,0 +1,78 @@
+> Public snapshot scope: 本文保留自主技术分析；课程/vendor 实现文件可能未被捆绑，描述不等同于可构建源码声明。
+
+# 环境与时钟信息终端
+
+## 功能与定位
+
+这个个人综合实践把 DS1302、DS18B20、OLED、独立按键和 AT24C02 接口组织成一个应用。应用层负责页面、按键事件、刷新节拍和配置状态；C51 适配层连接已有器件驱动。
+
+应用包含：
+
+- 时钟、温度和设置三个页面的状态管理。
+- SW1/SW2 切换页面，SW3 调整温度显示偏移，SW4 保存配置。
+- EEPROM 保存当前页面与温度偏移。
+- DS1302 启动时只读取时间，不在每次复位时写入固定日期。
+- DS18B20 适配接口在 `0x44` 命令后等待转换完成，再读取暂存器。
+- 应用核心在 Windows GCC 下使用模拟平台完成状态、页面和保存路径测试。
+
+## 模块关系
+
+![环境与时钟信息终端结构](../../assets/images/architecture/environment-clock-terminal-architecture.svg)
+
+```text
+main.c
+  ├─ 读取独立按键 → TerminalKey
+  ├─ 每 100 ms 调用 terminal_app_tick()
+  └─ TerminalPlatform 回调
+       ├─ DS1302：读取 RTC
+       ├─ DS18B20：读取温度
+       ├─ OLED：按页面显示
+       └─ AT24C02：读写配置
+
+terminal_app.c
+  ├─ 页面状态
+  ├─ 按键事件
+  ├─ 采样/刷新节拍
+  └─ 配置脏标记
+```
+
+`practice/core/` 与寄存器和板级头文件解耦，可在主机端测试。`practice/c51/` 是板级适配入口，复用以下已有驱动：
+
+- `projects/12_DS1302/.../Int_DS1302`、`Int_OLED`、`Dri_IIC`、`Dri_1Wire`和`Com_Util`。
+- `projects/09_I2C与AT24C02/.../Int_EEPROM`。
+- `projects/03_按键/.../Int_Key`。
+
+`Int_DS18B20_Safe` 负责 DS18B20 转换等待；其余适配接口调用对应外设工程中的驱动。
+
+更完整的模块职责、事件状态和存储策略见[系统结构与数据流](docs/系统结构与数据流.md)。
+
+## 数据流
+
+1. 主循环把四个物理键转换为与硬件无关的事件。
+2. 应用层改变页面或设置值，并记录配置是否需要保存。
+3. 每 10 个 100 ms tick 读取一次 RTC 和温度。
+4. 显示回调根据当前页面格式化输出，应用层不直接操作 I²C。
+5. 只有收到保存事件时才写 EEPROM，避免每次循环写入非易失存储器。
+
+## Timer 与资源安排
+
+C51 入口使用 100 ms 前台节拍组织多模块数据流，不占用 Timer0。DS1302 独立走时；DS18B20 读取接口会等待转换完成。当前实现采用前台节拍和阻塞式温度读取。
+
+## 主机端验证
+
+```powershell
+gcc -std=c11 -Wall -Wextra -Werror -pedantic `
+  practice/core/terminal_app.c practice/tests/test_terminal_app.c `
+  -I practice/include -o terminal-app-test.exe
+./terminal-app-test.exe
+```
+
+测试覆盖配置读取、周期采样、页面切换、偏移调整和显式保存。C51 适配代码已核对函数与文件依赖；下列项目用于板端复测。
+
+## 板端复测项
+
+- 上电后 RTC 是否继续走时，是否被默认时间覆盖。
+- OLED 三个页面切换后是否存在残留字符。
+- DS18B20 与参考温度的对照结果和转换周期。
+- 调整偏移后断电重启，EEPROM 配置是否恢复。
+- 连续按键时的消抖、页面边界和 I²C 总线状态。
