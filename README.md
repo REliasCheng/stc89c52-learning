@@ -2,19 +2,21 @@
 
 围绕 STC89C52RC 教学板的软件结构、外设连接与系统集成实践。
 
+**🧠 Application State Machine**
+
 ![STC89 application boundary](assets/images/architecture/portfolio-overview.svg)
 
-## Project Snapshot
+## Application Snapshot
 
-| Field | Value |
+| Application Focus | Current Scope |
 | --- | --- |
-| Language | Embedded C、C11 |
-| Platform | STC89C52RC / 8051，典型主频 11.0592 MHz |
-| Toolchain | Keil C51 板级适配参考路径；GCC 16.1.0 主机验证 |
-| Architecture | Application Core、`TerminalPlatform` 回调与 C51 Adapter |
-| Verification | 应用核心的主机测试；不包含 Keil 整体构建或硬件验证 |
+| MCU Context | STC89C52RC / 8051，典型主频 11.0592 MHz |
+| Application Core | 页面状态、事件处理、周期采样与配置管理 |
+| Persistence | AT24C02 配置加载、脏标记与显式保存策略 |
+| Platform Boundary | `TerminalPlatform` 回调与 C51 Adapter |
+| Evidence | GCC 主机测试通过；Keil 整体构建与硬件验证未执行 |
 
-> **Project status:** Application architecture documented · Host Test passed · GCC host build passed · Keil target build and hardware validation not performed
+> 💾 **Evidence:** Application state machine host-tested · GCC build passed · Peripheral hardware validation not performed
 
 ## Overview
 

@@ -1,32 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
-  <title id="title">STC89 application boundary</title>
-  <desc id="desc">Board events enter a portable application state machine through platform callbacks and a C51 adapter.</desc>
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#8b949e"/></marker>
-    <style>
-      .bg{fill:#0d1117}.grid{stroke:#30363d;stroke-width:1;opacity:.35}.box{stroke-width:2}.input{fill:#21262d;stroke:#8b949e}.core{fill:#0d419d;stroke:#58a6ff}.hardware{fill:#1f6f3d;stroke:#3fb950}.output{fill:#f0f6fc;stroke:#c9d1d9}.title{font:700 27px system-ui,sans-serif;fill:#f0f6fc}.subtitle{font:16px system-ui,sans-serif;fill:#8b949e}.label{font:700 17px system-ui,sans-serif;fill:#f0f6fc;text-anchor:middle}.detail{font:13px system-ui,sans-serif;fill:#c9d1d9;text-anchor:middle}.dark{fill:#0d1117}.arrow{stroke:#8b949e;stroke-width:3;marker-end:url(#arrow)}.footer{font:14px system-ui,sans-serif;fill:#8b949e;text-anchor:middle}
-    </style>
-  </defs>
-  <rect class="bg" width="1200" height="360" rx="22"/>
-  <path class="grid" d="M0 90H1200M0 270H1200M240 0V360M480 0V360M720 0V360M960 0V360"/>
-  <text class="title" x="50" y="54">STC89 application boundary</text>
-  <text class="subtitle" x="50" y="84">Events · application state · callbacks · adapter</text>
-  <rect class="box input" x="50" y="140" width="180" height="92" rx="14"/>
-  <text class="label" x="140" y="177">Event</text>
-  <text class="detail" x="140" y="205">key / tick</text>
-  <rect class="box core" x="280" y="140" width="180" height="92" rx="14"/>
-  <text class="label" x="370" y="177">App State</text>
-  <text class="detail" x="370" y="205">pages / config</text>
-  <rect class="box core" x="510" y="140" width="180" height="92" rx="14"/>
-  <text class="label" x="600" y="177">Callback</text>
-  <text class="detail" x="600" y="205">platform API</text>
-  <rect class="box hardware" x="740" y="140" width="180" height="92" rx="14"/>
-  <text class="label" x="830" y="177">C51 Adapter</text>
-  <text class="detail" x="830" y="205">board layer</text>
-  <rect class="box output" x="970" y="140" width="180" height="92" rx="14"/>
-  <text class="label dark" x="1060" y="177">Peripherals</text>
-  <text class="detail dark" x="1060" y="205">RTC / OLED</text>
-  <path class="arrow" d="M230 186H270"/><path class="arrow" d="M460 186H500"/><path class="arrow" d="M690 186H730"/><path class="arrow" d="M920 186H960"/>
-  <text class="footer" x="600" y="305">Application-core behavior is host tested; peripheral runtime evidence is not implied.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">STC89 application boundary</title><desc id="desc">Events drive a portable application state machine, persistent configuration, and callback boundary before the C51 adapter reaches board peripherals.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#8b949e"/></marker><style>.bg{fill:#0d1117}.grid{stroke:#30363d;opacity:.28}.box{stroke-width:2}.input{fill:#21262d;stroke:#8b949e}.core{fill:#0d419d;stroke:#58a6ff}.hardware{fill:#1f6f3d;stroke:#3fb950}.output{fill:#f0f6fc;stroke:#c9d1d9}.title{font:700 28px system-ui,sans-serif;fill:#f0f6fc}.sub{font:16px system-ui,sans-serif;fill:#8b949e}.label{font:700 17px system-ui,sans-serif;fill:#f0f6fc;text-anchor:middle}.detail{font:13px system-ui,sans-serif;fill:#c9d1d9;text-anchor:middle}.dark{fill:#0d1117}.arrow{fill:none;stroke:#8b949e;stroke-width:3;marker-end:url(#arrow)}</style></defs>
+  <rect class="bg" width="1200" height="460" rx="22"/><path class="grid" d="M0 110H1200M0 360H1200M300 0V460M600 0V460M900 0V460"/>
+  <text class="title" x="50" y="54">STC89 Application Boundary</text><text class="sub" x="50" y="84">Events · state machine · persistent configuration · platform callbacks</text>
+  <rect class="box input" x="45" y="190" width="190" height="90" rx="14"/><text class="label" x="140" y="226">Key / Tick</text><text class="detail" x="140" y="254">application events</text>
+  <rect class="box core" x="310" y="145" width="220" height="90" rx="14"/><text class="label" x="420" y="181">Application Core</text><text class="detail" x="420" y="209">pages · sampling</text>
+  <rect class="box core" x="310" y="285" width="220" height="90" rx="14"/><text class="label" x="420" y="321">Persistent Config</text><text class="detail" x="420" y="349">dirty flag · save</text>
+  <rect class="box core" x="615" y="190" width="220" height="90" rx="14"/><text class="label" x="725" y="226">Platform Callbacks</text><text class="detail" x="725" y="254">TerminalPlatform</text>
+  <rect class="box hardware" x="925" y="145" width="220" height="90" rx="14"/><text class="label" x="1035" y="181">C51 Adapter</text><text class="detail" x="1035" y="209">pin / peripheral API</text>
+  <rect class="box output" x="925" y="285" width="220" height="90" rx="14"/><text class="label dark" x="1035" y="321">RTC · OLED · EEPROM</text><text class="detail dark" x="1035" y="349">board boundary</text>
+  <path class="arrow" d="M235 235L310 190M235 245L310 330M530 190L615 220M530 330L615 250M835 220L925 190M835 250L925 330"/>
 </svg>
-
