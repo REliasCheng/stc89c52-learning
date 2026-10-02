@@ -67,7 +67,7 @@ hardware/                               接线与引脚说明
 
 ### Hardware Validation
 
-Not performed。当前公开验证不包含 Keil 整体构建、串口烧录或实机运行；C51 Adapter 目录只表达板级适配关系。
+**Status:** Not Performed. 当前公开验证不包含 Keil 整体构建、串口烧录或实机运行；C51 Adapter 目录只表达板级适配关系。
 
 ### Runtime Evidence
 
