@@ -2,11 +2,9 @@
 
 围绕 STC89C52RC 教学板的软件结构、外设连接与系统集成实践。
 
-## Overview
+![STC89 application boundary](assets/images/architecture/portfolio-overview.svg)
 
-当前代表项目“环境与时钟信息终端”把 RTC、温度、OLED、按键和非易失配置组织为可测试的应用核心，并把板级适配限制在清晰的平台边界内。
-
-## Platform & Technology
+## Project Snapshot
 
 | Field | Value |
 | --- | --- |
@@ -15,6 +13,12 @@
 | Toolchain | Keil C51 板级适配参考路径；GCC 16.1.0 主机验证 |
 | Architecture | Application Core、`TerminalPlatform` 回调与 C51 Adapter |
 | Verification | 应用核心的主机测试；不包含 Keil 整体构建或硬件验证 |
+
+> **Project status:** Application architecture documented · Host Test passed · GCC host build passed · Keil target build and hardware validation not performed
+
+## Overview
+
+当前代表项目“环境与时钟信息终端”把 RTC、温度、OLED、按键和非易失配置组织为可测试的应用核心，并把板级适配限制在清晰的平台边界内。
 
 外设范围包括 DS1302、DS18B20、OLED、AT24C02、独立按键与 UART。
 
