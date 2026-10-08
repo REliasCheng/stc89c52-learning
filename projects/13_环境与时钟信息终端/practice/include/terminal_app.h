@@ -37,12 +37,27 @@ typedef struct {
 } TerminalConfig;
 
 typedef struct {
+    TerminalU8 rtc_has_value;
+    TerminalU8 rtc_sample_ok;
+    TerminalU8 temperature_has_value;
+    TerminalU8 temperature_sample_ok;
+} TerminalReadStatus;
+
+typedef enum {
+    TERMINAL_SAVE_NOT_REQUESTED = 0,
+    TERMINAL_SAVE_OK,
+    TERMINAL_SAVE_FAILED,
+    TERMINAL_SAVE_UNAVAILABLE
+} TerminalSaveStatus;
+
+typedef struct {
     TerminalU8 (*rtc_read)(void *context, TerminalDateTime *date_time);
     TerminalU8 (*temperature_read)(void *context, TerminalS16 *temperature_tenths);
     TerminalU8 (*config_load)(void *context, TerminalConfig *config);
     TerminalU8 (*config_save)(void *context, const TerminalConfig *config);
     void (*display)(void *context, TerminalPage page, const TerminalDateTime *date_time,
-                    TerminalS16 temperature_tenths, const TerminalConfig *config);
+                    TerminalS16 temperature_tenths, const TerminalConfig *config,
+                    const TerminalReadStatus *read_status);
     void *context;
 } TerminalPlatform;
 
@@ -51,6 +66,9 @@ typedef struct {
     TerminalConfig config;
     TerminalDateTime date_time;
     TerminalS16 temperature_tenths;
+    TerminalReadStatus read_status;
+    TerminalSaveStatus save_status;
+    TerminalU8 config_loaded;
     TerminalU8 tick_divider;
     TerminalU8 config_dirty;
 } TerminalApp;
