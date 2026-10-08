@@ -1,0 +1,28 @@
+name: Portable terminal host tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  host-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and execute tests
+        run: python3 scripts/run_host_tests.py --compiler ${{ matrix.compiler }}
+
+  sanitizers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and execute with ASan and UBSan
+        run: python3 scripts/run_host_tests.py --compiler gcc --sanitize
