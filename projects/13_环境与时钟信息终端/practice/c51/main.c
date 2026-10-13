@@ -33,8 +33,7 @@ static TerminalU8 platform_rtc_read(void *context, TerminalDateTime *date_time)
 static TerminalU8 platform_temperature_read(void *context, TerminalS16 *temperature_tenths)
 {
     (void)context;
-    *temperature_tenths = Int_DS18B20_ReadTenths();
-    return 1;
+    return Int_DS18B20_TryReadTenths(temperature_tenths);
 }
 
 static TerminalU8 platform_config_load(void *context, TerminalConfig *config)
