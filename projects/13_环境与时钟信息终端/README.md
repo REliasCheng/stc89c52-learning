@@ -34,7 +34,7 @@ terminal_app.c
   └─ 配置脏标记
 ```
 
-`practice/core/` 与寄存器和板级头文件解耦，可在主机端测试。`practice/c51/` 是板级适配入口，引用 `Int_DS1302`、`Int_EEPROM`、`Int_Key`、`Int_OLED`、`Com_Util` 和 `Dri_1Wire` 等外部接口；这些头文件及实现未随当前仓库发布，因而不能从此公开快照完成 Keil C51 构建。`Int_DS18B20_Safe` 只提供转换等待和读数，不提供可靠的传感器失败状态。
+`practice/core/` 与寄存器和板级头文件解耦，可在主机端测试。`practice/c51/` 是板级适配入口，引用 `Int_DS1302`、`Int_EEPROM`、`Int_Key`、`Int_OLED`、`Com_Util` 和 `Dri_1Wire` 等外部接口；这些头文件及实现未随当前仓库发布，因而不能从此公开快照完成 Keil C51 构建。`Int_DS18B20_Safe` 读取九字节暂存器并以 CRC 错误状态向上层报告失败，合法 0℃ 仍是成功读数；缺少底层 Presence 状态与转换完成反馈，不能声称覆盖全部传感器故障。
 
 更完整的模块职责、事件状态和存储策略见[系统结构与数据流](docs/系统结构与数据流.md)。
 
