@@ -28,6 +28,22 @@ def main() -> int:
             command.extend(("-fsanitize=address,undefined", "-fno-omit-frame-pointer"))
         subprocess.run(command, cwd=ROOT, check=True)
         subprocess.run([str(executable)], cwd=ROOT, check=True)
+
+        adapter_executable = Path(output_dir) / (
+            "ds18b20-adapter-tests.exe" if sys.platform == "win32" else "ds18b20-adapter-tests"
+        )
+        adapter_command = [
+            args.compiler, "-std=c11", "-Wall", "-Wextra", "-Werror", "-pedantic",
+            str(PRACTICE / "c51" / "Int_DS18B20_Safe.c"),
+            str(PRACTICE / "tests" / "test_ds18b20_adapter.c"),
+            "-I", str(PRACTICE / "c51"),
+            "-I", str(PRACTICE / "tests" / "stubs"),
+            "-o", str(adapter_executable),
+        ]
+        if args.sanitize:
+            adapter_command.extend(("-fsanitize=address,undefined", "-fno-omit-frame-pointer"))
+        subprocess.run(adapter_command, cwd=ROOT, check=True)
+        subprocess.run([str(adapter_executable)], cwd=ROOT, check=True)
     return 0
 
 
