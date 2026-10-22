@@ -285,6 +285,30 @@ static void sampling_cadence_reinit(void)
     terminal_app_init(&app, &p);
     assert(app.tick_divider == 0U && app.save_status == TERMINAL_SAVE_NOT_REQUESTED);
 }
+static void display_only_on_sample_or_state_change(void)
+{
+    Fake f = fake_default(); TerminalPlatform p = platform_for(&f); TerminalApp app;
+    unsigned i;
+    terminal_app_init(&app, &p);
+    assert(f.renders == 1U);
+    terminal_app_handle_key(&app, TERMINAL_KEY_NONE);
+    terminal_app_handle_key(&app, TERMINAL_KEY_ADJUST); /* not settings page */
+    terminal_app_handle_key(&app, TERMINAL_KEY_SAVE); /* no dirty config */
+    terminal_app_handle_key(&app, (TerminalKey)255);
+    assert(f.renders == 1U);
+    for (i = 0U; i < 9U; ++i) terminal_app_tick(&app);
+    assert(f.renders == 1U && f.rtc_calls == 1U && f.temp_calls == 1U);
+    terminal_app_tick(&app);
+    assert(f.renders == 2U && f.rtc_calls == 2U && f.temp_calls == 2U);
+    terminal_app_handle_key(&app, TERMINAL_KEY_NEXT);
+    assert(f.renders == 3U); /* page change is immediate */
+    terminal_app_handle_key(&app, TERMINAL_KEY_ADJUST);
+    assert(f.renders == 4U); /* settings change is immediate */
+    terminal_app_handle_key(&app, TERMINAL_KEY_SAVE);
+    assert(f.renders == 5U); /* save status is immediate */
+    terminal_app_handle_key(&app, TERMINAL_KEY_SAVE);
+    assert(f.renders == 5U);
+}
 
 static unsigned count;
 static void run(const char *name, void (*test)(void))
@@ -312,6 +336,7 @@ int main(void)
     run("page_offset_boundaries", page_offset_boundaries);
     run("save_status_reset", save_status_reset);
     run("sampling_cadence_reinit", sampling_cadence_reinit);
+    run("display_only_on_sample_or_state_change", display_only_on_sample_or_state_change);
     printf("%u terminal application tests passed\n", count);
     return 0;
 }

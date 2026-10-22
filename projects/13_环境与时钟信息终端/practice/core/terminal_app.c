@@ -89,6 +89,7 @@ void terminal_app_init(TerminalApp *app, const TerminalPlatform *platform)
 
 void terminal_app_handle_key(TerminalApp *app, TerminalKey key)
 {
+    TerminalU8 changed = 0;
     if (app == 0) {
         return;
     }
@@ -96,12 +97,14 @@ void terminal_app_handle_key(TerminalApp *app, TerminalKey key)
         app->config.page = (TerminalU8)((app->config.page + 1U) % (TerminalU8)TERMINAL_PAGE_COUNT);
         app->config_dirty = 1;
         app->save_status = TERMINAL_SAVE_NOT_REQUESTED;
+        changed = 1;
     } else if (key == TERMINAL_KEY_PREVIOUS) {
         app->config.page = app->config.page == 0U ?
                                (TerminalU8)(TERMINAL_PAGE_COUNT - 1) :
                                (TerminalU8)(app->config.page - 1U);
         app->config_dirty = 1;
         app->save_status = TERMINAL_SAVE_NOT_REQUESTED;
+        changed = 1;
     } else if (key == TERMINAL_KEY_ADJUST && app->config.page == (TerminalU8)TERMINAL_PAGE_SETTINGS) {
         ++app->config.temperature_offset;
         if (app->config.temperature_offset > 5) {
@@ -109,7 +112,9 @@ void terminal_app_handle_key(TerminalApp *app, TerminalKey key)
         }
         app->config_dirty = 1;
         app->save_status = TERMINAL_SAVE_NOT_REQUESTED;
+        changed = 1;
     } else if (key == TERMINAL_KEY_SAVE && app->config_dirty) {
+        changed = 1;
         if (app->platform.config_save == 0) {
             app->save_status = TERMINAL_SAVE_UNAVAILABLE;
         } else if (app->platform.config_save(app->platform.context, &app->config)) {
@@ -119,7 +124,9 @@ void terminal_app_handle_key(TerminalApp *app, TerminalKey key)
             app->save_status = TERMINAL_SAVE_FAILED;
         }
     }
-    render(app);
+    if (changed) {
+        render(app);
+    }
 }
 
 void terminal_app_tick(TerminalApp *app)
@@ -131,6 +138,6 @@ void terminal_app_tick(TerminalApp *app)
     if (app->tick_divider >= 10U) {
         app->tick_divider = 0;
         sample_inputs(app);
+        render(app);
     }
-    render(app);
 }
