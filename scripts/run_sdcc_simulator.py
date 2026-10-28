@@ -40,7 +40,7 @@ def main() -> None:
     if result.returncode or "no loadable file found" in result.stdout:
         raise RuntimeError("uCsim could not load/run linked image")
     instruction_match = re.search(r"\bInst=\s*(\d+)", result.stdout)
-    stack_match = re.search(r"Most value of stack pointer=\s*0x([0-9a-f]+)",
+    stack_match = re.search(r"(?:Most|Max) value of stack pointer=\s*0x([0-9a-f]+)",
                             result.stdout, re.I)
     xram: dict[int, int] = {}
     for line in result.stdout.splitlines():
