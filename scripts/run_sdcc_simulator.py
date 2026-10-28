@@ -50,7 +50,7 @@ def main() -> None:
             for offset, value in enumerate(match[2].split()):
                 xram[base + offset] = int(value, 16)
     if not instruction_match or not stack_match or any(address + i not in xram for i in range(10)):
-        raise ValueError("uCsim state/XRAM evidence incomplete")
+        raise ValueError("uCsim state/XRAM evidence incomplete:\n" + result.stdout[-6000:])
     instructions = int(instruction_match[1])
     stack_high = int(stack_match[1], 16)
     values = bytes(xram[address + i] for i in range(10))
