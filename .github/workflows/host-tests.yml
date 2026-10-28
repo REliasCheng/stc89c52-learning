@@ -32,3 +32,25 @@ jobs:
           persist-credentials: false
       - name: Compile and execute with ASan and UBSan
         run: python3 scripts/run_host_tests.py --compiler gcc --sanitize
+
+  sdcc-target:
+    name: SDCC MCS-51 target compile/link/HEX
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install Ubuntu SDCC
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq sdcc sdcc-ucsim
+          sdcc -v
+      - name: Build twice and compare complete target images
+        run: |
+          python3 scripts/build_sdcc_target.py --output "$RUNNER_TEMP/stc89-first"
+          python3 scripts/build_sdcc_target.py --output "$RUNNER_TEMP/stc89-second"
+          cmp "$RUNNER_TEMP/stc89-first/stc89_terminal_foundation.hex" \
+              "$RUNNER_TEMP/stc89-second/stc89_terminal_foundation.hex"
+          python3 scripts/run_sdcc_simulator.py --build "$RUNNER_TEMP/stc89-first"
+          sha256sum "$RUNNER_TEMP/stc89-first/stc89_terminal_foundation.hex"
